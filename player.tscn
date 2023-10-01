@@ -126,5 +126,4 @@ shape = SubResource("RectangleShape2D_dhyqu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tp5sv")
 animation = &"idle"
-frame = 2
-frame_progress = 0.396668
+autoplay = "idle"
