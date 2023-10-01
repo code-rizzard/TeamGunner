@@ -20,3 +20,7 @@ texture = ExtResource("2_8inil")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
 shape = SubResource("RectangleShape2D_70vtv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2, 2)
