@@ -12,10 +12,8 @@ var gravity: int =  ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	hurtbox.on_hit.connect(on_hurtbox_hit)
+	
 
-	while true:
-		await get_tree().create_timer(1).timeout
-		hurtbox.hit(50)
 		
 
 
