@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://syrupjhhqtn8"]
+[gd_scene load_steps=35 format=3 uid="uid://syrupjhhqtn8"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_tyase"]
 [ext_resource type="Texture2D" uid="uid://cbamo15gn7dll" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Crouch.png" id="2_dy57j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://5oks7qpj0np6" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Death.png" id="3_a7a1y"]
 [ext_resource type="Texture2D" uid="uid://bnqwkjftyjhxk" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Jump.png" id="3_fqs4b"]
 [ext_resource type="Texture2D" uid="uid://b6hxfplu6017m" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Run.png" id="3_y1vsl"]
+[ext_resource type="Script" path="res://lib/Hurtbox.gd" id="7_n78po"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhyqu"]
 
@@ -205,9 +206,13 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn6i4"]
+size = Vector2(10, 29)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox")]
 position = Vector2(59, 52)
 script = ExtResource("1_tyase")
+hurtbox = NodePath("Hurtbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dhyqu")
@@ -216,3 +221,10 @@ shape = SubResource("RectangleShape2D_dhyqu")
 sprite_frames = SubResource("SpriteFrames_tp5sv")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("7_n78po")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-2, -0.5)
+shape = SubResource("RectangleShape2D_mn6i4")
