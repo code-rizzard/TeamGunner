@@ -15,6 +15,7 @@ func _on_process(_delta) -> State:
 
 func _on_physics_process(_delta) -> State :
 	var r := super(_delta)
+	target.velocity.x = lerpf(target.velocity.x, target.input_direction * target.movement_speed, 0.7)
 	parent.move_and_slide()
 	return r
 
