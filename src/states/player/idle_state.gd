@@ -1,4 +1,4 @@
-extends "res://lib/States/Player/PlayerMovement.gd"
+extends "res://src/states/player/movement_state.gd"
 
 @export var walk_state : State
 

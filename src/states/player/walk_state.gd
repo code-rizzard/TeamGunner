@@ -1,4 +1,6 @@
-extends "res://lib/States/Player/PlayerMovement.gd"
+extends "res://src/states/player/movement_state.gd"
+
+
 
 @export var idle_state : State
 
