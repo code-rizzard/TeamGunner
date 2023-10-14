@@ -29,18 +29,8 @@ func on_hurtbox_hit(damage : int):
 	if health <= 0:
 		queue_free()
 
-func _process(_delta):
-	input_direction = Input.get_axis("move_left", "move_right")
-	if input_direction != 0:
-		anim_player.flip_h = true if input_direction == -1 else false
+
 	
 
-
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
 

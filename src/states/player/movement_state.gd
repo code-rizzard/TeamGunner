@@ -1,10 +1,17 @@
-extends State
+extends "res://src/states/player/base_state.gd"
 
-var parent : Player
+@export var jump_state : State
 
-func _on_ready():
-	super()
-	parent = self.target
+
+
+
+
+
+func _on_process(_delta) -> State:
+	var r := super(_delta)
+	if Input.is_action_just_pressed("jump") and parent.is_on_floor():
+		return jump_state
+	return r
 
 func _on_physics_process(_delta) -> State :
 	var r := super(_delta)

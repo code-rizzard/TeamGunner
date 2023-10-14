@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://syrupjhhqtn8"]
+[gd_scene load_steps=39 format=3 uid="uid://syrupjhhqtn8"]
 
 [ext_resource type="Script" path="res://src/mobs/player/Player.gd" id="1_ll0nb"]
 [ext_resource type="Texture2D" uid="uid://cbamo15gn7dll" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Crouch.png" id="2_dy57j"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://src/lib/state_machine.gd" id="8_rx4c5"]
 [ext_resource type="Script" path="res://src/states/player/walk_state.gd" id="9_nh04j"]
 [ext_resource type="Script" path="res://src/states/player/idle_state.gd" id="10_37wpo"]
+[ext_resource type="Script" path="res://src/states/player/jump_state.gd" id="11_adj8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhyqu"]
 size = Vector2(15, 25)
@@ -240,10 +241,17 @@ script = ExtResource("8_rx4c5")
 target = NodePath("..")
 initial_state = NodePath("IdleState")
 
-[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state")]
 script = ExtResource("9_nh04j")
 idle_state = NodePath("../IdleState")
+jump_state = NodePath("../JumpState")
 
-[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state")]
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "jump_state")]
 script = ExtResource("10_37wpo")
 walk_state = NodePath("../WalkState")
+jump_state = NodePath("../JumpState")
+
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state")]
+script = ExtResource("11_adj8n")
+idle_state = NodePath("../IdleState")
+jump_state = NodePath(".")
