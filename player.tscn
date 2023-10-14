@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://src/states/player/idle_state.gd" id="10_37wpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhyqu"]
+size = Vector2(15, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5c04m"]
 atlas = ExtResource("2_dy57j")
@@ -212,12 +213,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mn6i4"]
 size = Vector2(10, 29)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player")]
 position = Vector2(59, 52)
 script = ExtResource("1_ll0nb")
 hurtbox = NodePath("Hurtbox")
+anim_player = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 1.5)
 shape = SubResource("RectangleShape2D_dhyqu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

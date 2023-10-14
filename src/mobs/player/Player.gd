@@ -4,6 +4,7 @@ class_name Player
 @export var max_health := 100
 @export var movement_speed = 100.0
 @export var hurtbox : Hurtbox
+@export var anim_player : AnimatedSprite2D
 const JUMP_VELOCITY = -400.0
 
 
