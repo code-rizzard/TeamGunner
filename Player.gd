@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var max_health := 100
 @export var movement_speed = 100.0
@@ -9,6 +10,10 @@ const JUMP_VELOCITY = -400.0
 
 @onready var health := max_health
 var gravity: int =  ProjectSettings.get_setting("physics/2d/default_gravity")
+
+
+var input_direction : float
+
 
 func _ready():
 	hurtbox.on_hit.connect(on_hurtbox_hit)
@@ -23,6 +28,9 @@ func on_hurtbox_hit(damage : int):
 	if health <= 0:
 		queue_free()
 
+func _process(_delta):
+	input_direction = Input.get_axis("move_left", "move_right")
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -32,7 +40,4 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	var direction := Input.get_axis("move_left", "move_right")
-	velocity.x = lerpf(velocity.x, direction * movement_speed, 0.5)
 
-	move_and_slide()

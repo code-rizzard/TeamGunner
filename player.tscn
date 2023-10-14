@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://syrupjhhqtn8"]
+[gd_scene load_steps=38 format=3 uid="uid://syrupjhhqtn8"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_tyase"]
 [ext_resource type="Texture2D" uid="uid://cbamo15gn7dll" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Crouch.png" id="2_dy57j"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bnqwkjftyjhxk" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Jump.png" id="3_fqs4b"]
 [ext_resource type="Texture2D" uid="uid://b6hxfplu6017m" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Run.png" id="3_y1vsl"]
 [ext_resource type="Script" path="res://lib/Hurtbox.gd" id="7_n78po"]
+[ext_resource type="Script" path="res://lib/StateMachine.gd" id="8_rx4c5"]
+[ext_resource type="Script" path="res://WalkState.gd" id="9_kbsyd"]
+[ext_resource type="Script" path="res://IdleState.gd" id="9_xqhha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhyqu"]
 
@@ -228,3 +231,16 @@ script = ExtResource("7_n78po")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-2, -0.5)
 shape = SubResource("RectangleShape2D_mn6i4")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("target", "initial_state")]
+script = ExtResource("8_rx4c5")
+target = NodePath("..")
+initial_state = NodePath("IdleState")
+
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("9_kbsyd")
+idle_state = NodePath("../IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state")]
+script = ExtResource("9_xqhha")
+walk_state = NodePath("../WalkState")
