@@ -24,6 +24,7 @@ func _ready():
 
 	for c in get_children():
 		c._init_state(target)
+	current_state._on_enter()
 
 
 
