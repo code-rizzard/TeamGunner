@@ -6,6 +6,8 @@ func  _on_enter(prev_state : State) -> void:
 	super(prev_state)
 	self.parent.anim_player.play("jump")
 	parent.velocity.y = -parent.jump_velocity
+	if not Input.is_action_pressed("jump"):
+		parent.velocity.y = -100
 
 func _on_unhandled_input(e : InputEvent) -> State:
 	var r := super(e)
