@@ -271,8 +271,10 @@ jump_state = NodePath("../JumpState")
 crouch_state = NodePath("../Crouch")
 fall_state = NodePath("../FallState")
 
-[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state")]
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "crouch_state", "fall_state")]
 script = ExtResource("11_adj8n")
+jump_state = NodePath(".")
+crouch_state = NodePath("../Crouch")
 fall_state = NodePath("../FallState")
 
 [node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state")]
