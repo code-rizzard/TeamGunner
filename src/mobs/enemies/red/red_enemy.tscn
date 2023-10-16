@@ -1,0 +1,206 @@
+[gd_scene load_steps=31 format=3 uid="uid://41mxgqppdhiw"]
+
+[ext_resource type="Script" path="res://src/mobs/enemies/red/red_enemy.gd" id="1_bc41w"]
+[ext_resource type="Texture2D" uid="uid://cj2vn2t65ria4" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Death.png" id="1_cilhe"]
+[ext_resource type="Texture2D" uid="uid://c5u7kerchd3nu" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Jump.png" id="2_3a5hg"]
+[ext_resource type="Texture2D" uid="uid://seh7madiryoi" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Idle.png" id="3_rtr20"]
+[ext_resource type="Texture2D" uid="uid://lbvrjlogs468" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Run.png" id="4_nfald"]
+[ext_resource type="Script" path="res://src/lib/hurtbox.gd" id="6_d3pqj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tadrg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvcjo"]
+atlas = ExtResource("1_cilhe")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt8qn"]
+atlas = ExtResource("1_cilhe")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqcfy"]
+atlas = ExtResource("1_cilhe")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1odu"]
+atlas = ExtResource("1_cilhe")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf5ts"]
+atlas = ExtResource("1_cilhe")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubjsq"]
+atlas = ExtResource("1_cilhe")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_631fa"]
+atlas = ExtResource("1_cilhe")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enemm"]
+atlas = ExtResource("1_cilhe")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npym8"]
+atlas = ExtResource("2_3a5hg")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npwaq"]
+atlas = ExtResource("2_3a5hg")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2557"]
+atlas = ExtResource("3_rtr20")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf7no"]
+atlas = ExtResource("3_rtr20")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hi4k"]
+atlas = ExtResource("3_rtr20")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qk4a"]
+atlas = ExtResource("3_rtr20")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bh1u"]
+atlas = ExtResource("3_rtr20")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn3pw"]
+atlas = ExtResource("4_nfald")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8223v"]
+atlas = ExtResource("4_nfald")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wlug"]
+atlas = ExtResource("4_nfald")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnv6b"]
+atlas = ExtResource("4_nfald")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6gwp"]
+atlas = ExtResource("4_nfald")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxruu"]
+atlas = ExtResource("4_nfald")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e4gxe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvcjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt8qn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqcfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1odu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf5ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubjsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_631fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enemm")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npym8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npwaq")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2557")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf7no")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hi4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qk4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bh1u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn3pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8223v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wlug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnv6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6gwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxruu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3v5r8"]
+size = Vector2(17, 35)
+
+[node name="red_enemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player", "muzzle")]
+script = ExtResource("1_bc41w")
+hurtbox = NodePath("Hurtbox")
+anim_player = NodePath("AnimatedSprite2D")
+muzzle = NodePath("Muzzle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tadrg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e4gxe")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("6_d3pqj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1.5, -2.5)
+shape = SubResource("RectangleShape2D_3v5r8")
+
+[node name="Muzzle" type="Marker2D" parent="."]
