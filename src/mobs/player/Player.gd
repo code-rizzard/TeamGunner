@@ -33,7 +33,6 @@ var input_direction : float
 
 func _ready():
 	hurtbox.on_hit.connect(on_hurtbox_hit)
-	Engine.time_scale = 0.3
 	
 
 func _input(_event):
