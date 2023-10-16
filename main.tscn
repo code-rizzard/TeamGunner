@@ -157,4 +157,3 @@ layer_0/tile_data = PackedInt32Array(393227, 983040, 0, 327691, 983040, 0, 39322
 
 [node name="Player" parent="." instance=ExtResource("1_shuym")]
 position = Vector2(1215, 296)
-jump_height = 2.0
