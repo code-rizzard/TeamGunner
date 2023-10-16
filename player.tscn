@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://syrupjhhqtn8"]
+[gd_scene load_steps=44 format=3 uid="uid://syrupjhhqtn8"]
 
 [ext_resource type="Script" path="res://src/mobs/player/Player.gd" id="1_ll0nb"]
 [ext_resource type="Texture2D" uid="uid://cbamo15gn7dll" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Crouch.png" id="2_dy57j"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://src/states/player/crouch_state.gd" id="12_5rdrl"]
 [ext_resource type="Script" path="res://src/lib/state_viewer.gd" id="13_k2ic6"]
 [ext_resource type="Script" path="res://src/states/player/fall_state.gd" id="14_wmrab"]
+[ext_resource type="PackedScene" uid="uid://dvp0bf756ua0o" path="res://src/objects/bullet/bullet.tscn" id="15_0r2nf"]
+[ext_resource type="Script" path="res://src/mobs/player/muzzle.gd" id="16_53bas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhyqu"]
 size = Vector2(13, 25)
@@ -217,11 +219,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mn6i4"]
 size = Vector2(10, 29)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player", "muzzle")]
 script = ExtResource("1_ll0nb")
 jump_height = 1.5
 hurtbox = NodePath("Hurtbox")
 anim_player = NodePath("AnimatedSprite2D")
+muzzle = NodePath("Muzzle")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 1.5)
@@ -229,10 +232,8 @@ shape = SubResource("RectangleShape2D_dhyqu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tp5sv")
-animation = &"crouch"
+animation = &"idle"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("7_ab1wd")
@@ -289,3 +290,8 @@ script = ExtResource("14_wmrab")
 idle_state = NodePath("../IdleState")
 jump_state = NodePath("../JumpState")
 crouch_state = NodePath("../Crouch")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(16, -3)
+script = ExtResource("16_53bas")
+bullet_scene = ExtResource("15_0r2nf")

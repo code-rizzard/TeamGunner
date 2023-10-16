@@ -7,6 +7,10 @@ func _on_ready():
 	super()
 	parent = self.target
 
+func _on_enter(_s : State) -> void:
+	parent.muzzle.position = parent.muzzle_positions[name.to_lower().trim_suffix("state")]
+
+
 func _on_process(delta) -> State:
 	var r := super(delta)
 	parent.input_direction = Input.get_axis("move_left", "move_right")
