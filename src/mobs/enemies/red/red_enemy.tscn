@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://41mxgqppdhiw"]
+[gd_scene load_steps=36 format=3 uid="uid://41mxgqppdhiw"]
 
 [ext_resource type="Script" path="res://src/mobs/enemies/red/red_enemy.gd" id="1_bc41w"]
 [ext_resource type="Texture2D" uid="uid://cj2vn2t65ria4" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Death.png" id="1_cilhe"]
@@ -6,8 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://seh7madiryoi" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Idle.png" id="3_rtr20"]
 [ext_resource type="Texture2D" uid="uid://lbvrjlogs468" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Run.png" id="4_nfald"]
 [ext_resource type="Script" path="res://src/lib/hurtbox.gd" id="6_d3pqj"]
+[ext_resource type="Script" path="res://src/lib/state_machine.gd" id="7_g876t"]
+[ext_resource type="Script" path="res://src/mobs/enemies/red/states/idle_state.gd" id="8_6p1n5"]
+[ext_resource type="Script" path="res://src/mobs/enemies/red/states/fall_state.gd" id="8_m5h34"]
+[ext_resource type="Script" path="res://src/mobs/enemies/red/states/walk_state.gd" id="10_uuykt"]
+[ext_resource type="Script" path="res://src/lib/state_viewer.gd" id="11_nb540"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tadrg"]
+size = Vector2(18, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvcjo"]
 atlas = ExtResource("1_cilhe")
@@ -189,6 +195,7 @@ anim_player = NodePath("AnimatedSprite2D")
 muzzle = NodePath("Muzzle")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1.5)
 shape = SubResource("RectangleShape2D_tadrg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -204,3 +211,34 @@ position = Vector2(-1.5, -2.5)
 shape = SubResource("RectangleShape2D_3v5r8")
 
 [node name="Muzzle" type="Marker2D" parent="."]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("target", "initial_state")]
+script = ExtResource("7_g876t")
+target = NodePath("..")
+initial_state = NodePath("Idle")
+
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state")]
+script = ExtResource("8_m5h34")
+idle_state = NodePath("../Idle")
+fall_state = NodePath(".")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "fall_state")]
+script = ExtResource("8_6p1n5")
+walk_state = NodePath("../WalkState")
+fall_state = NodePath("../FallState")
+
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("10_uuykt")
+idle_state = NodePath("../Idle")
+
+[node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]
+visible = false
+script = ExtResource("11_nb540")
+text_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="StateMachine/StateViewer"]
+offset_left = -17.0
+offset_top = -40.0
+offset_right = 23.0
+offset_bottom = -14.0
+text = "sadf"
