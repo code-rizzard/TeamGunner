@@ -249,7 +249,6 @@ target = NodePath("..")
 initial_state = NodePath("IdleState")
 
 [node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]
-visible = false
 position = Vector2(0, -20.165)
 script = ExtResource("13_k2ic6")
 text_label = NodePath("Label")
@@ -286,11 +285,12 @@ script = ExtResource("12_5rdrl")
 idle_state = NodePath("../IdleState")
 jump_state = NodePath("../JumpState")
 
-[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state")]
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "fall_state")]
 script = ExtResource("14_wmrab")
 idle_state = NodePath("../IdleState")
 jump_state = NodePath("../JumpState")
 crouch_state = NodePath("../Crouch")
+fall_state = NodePath(".")
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(16, -3)
