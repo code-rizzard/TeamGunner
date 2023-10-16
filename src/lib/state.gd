@@ -32,3 +32,6 @@ func _on_process(_delta : float) -> State:
 func _on_physics_process(_delta: float) -> State:
 	return null
 
+func _on_after_physics_process(_delta: float) -> State:
+	return null
+	

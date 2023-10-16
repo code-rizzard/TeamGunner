@@ -23,7 +23,8 @@ func _ready():
 	current_state = initial_state
 
 	for c in get_children():
-		c._init_state(target)
+		if c is State:
+			c._init_state(target)
 	current_state._on_enter()
 
 
@@ -32,7 +33,7 @@ func _process(delta):
 	if current_state == null:
 		return
 	var new_state = current_state._on_process(delta)
-	if new_state != null:
+	if new_state != null and new_state != current_state:
 		current_state._on_exit()
 		current_state = new_state
 		new_state._on_enter()
@@ -42,7 +43,13 @@ func _physics_process(delta):
 	if current_state == null:
 		return
 	var new_state = current_state._on_physics_process(delta)
-	if new_state != null:
+	if new_state != null and new_state != current_state:
+		current_state._on_exit()
+		current_state = new_state
+		new_state._on_enter()
+
+	new_state = current_state._on_after_physics_process(delta)
+	if new_state != null and new_state != current_state:
 		current_state._on_exit()
 		current_state = new_state
 		new_state._on_enter()

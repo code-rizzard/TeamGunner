@@ -2,6 +2,8 @@ extends "res://src/states/player/movement_state.gd"
 
 @export var idle_state : State
 
+
+
 func _on_enter() -> void:
 	super()
 	self.parent.anim_player.play("jump")

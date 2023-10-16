@@ -19,5 +19,8 @@ func _on_physics_process(delta: float) -> State:
 	if not parent.is_on_floor():
 		parent.velocity.y += parent.gravity * delta
 	return super(delta)
-	
+
+
+func _on_after_physics_process(_delta: float) -> State:
+	return super(_delta)
 	
