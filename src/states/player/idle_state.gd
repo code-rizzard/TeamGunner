@@ -3,6 +3,7 @@ extends "res://src/states/player/base_state.gd"
 @export var walk_state : State
 @export var jump_state : State
 @export var crouch_state : State
+@export var fall_state : State
 
 
 func _on_enter() -> void:
@@ -23,9 +24,13 @@ func _on_physics_process(_delta) -> State :
 	var r := super(_delta)
 	if r != null:
 		return r
+
+	target.velocity.x = lerpf(target.velocity.x, 0, 0.7)
+	if not parent.is_on_floor() and parent.velocity.y > 0:
+		return fall_state
 	if parent.input_direction != 0:
 		return walk_state
-	target.velocity.x = lerpf(target.velocity.x, 0, 0.7)
+	
 	return null
 
 
