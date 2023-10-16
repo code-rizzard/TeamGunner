@@ -27,39 +27,33 @@ func _ready():
 			c._init_state(target)
 	current_state._on_enter()
 
+func _change_state(new_state : State):
+	if new_state == null or new_state == current_state:
+		return 
+	current_state._on_exit()
+	current_state = new_state
+	new_state._on_enter()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if current_state == null:
 		return
-	var new_state = current_state._on_unhandled_input(event)
-	if new_state != null and new_state != current_state:
-		current_state._on_exit()
-		current_state = new_state
-		new_state._on_enter()
+	_change_state(current_state._on_unhandled_input(event))
+	
 
 	
 func _process(delta):
 	if current_state == null:
 		return
-	var new_state = current_state._on_process(delta)
-	if new_state != null and new_state != current_state:
-		current_state._on_exit()
-		current_state = new_state
-		new_state._on_enter()
+	_change_state(current_state._on_process(delta))
+	
 
 
 func _physics_process(delta):
 	if current_state == null:
 		return
-	var new_state = current_state._on_physics_process(delta)
-	if new_state != null and new_state != current_state:
-		current_state._on_exit()
-		current_state = new_state
-		new_state._on_enter()
+	_change_state(current_state._on_physics_process(delta))
 
-	new_state = current_state._on_after_physics_process(delta)
-	if new_state != null and new_state != current_state:
-		current_state._on_exit()
-		current_state = new_state
-		new_state._on_enter()
+	## After physics process
+	_change_state(current_state._on_after_physics_process(delta))
 
