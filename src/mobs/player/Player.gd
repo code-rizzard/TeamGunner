@@ -12,11 +12,11 @@ var look_direction :
 	get: return -1 if anim_player.flip_h else 1
 
 const muzzle_positions := {
-	"idle": Vector2(16,-3),
-	"walk": Vector2(16,-3),
-	"jump": Vector2(17,-3),
-	"fall": Vector2(17,-3),
-	"crouch": Vector2(17,1),
+	"idle": Vector2(9,-3),
+	"walk": Vector2(9,-3),
+	"jump": Vector2(10,-3),
+	"fall": Vector2(10,-3),
+	"crouch": Vector2(10,1),
 }
 
 var jump_velocity:
