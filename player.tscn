@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://src/states/player/fall_state.gd" id="14_wmrab"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhyqu"]
-size = Vector2(15, 25)
+size = Vector2(13, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5c04m"]
 atlas = ExtResource("2_dy57j")
