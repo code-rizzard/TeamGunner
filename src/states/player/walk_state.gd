@@ -10,7 +10,6 @@ func  _on_enter(prev_state : State) -> void:
 
 func _on_physics_process(delta: float) -> State:
 	var r := super(delta)
-	print(r)
 	if r != null:
 		return r
 	if target.input_direction == 0:
