@@ -3,9 +3,14 @@ class_name Player
 
 @export var max_health := 100
 @export var movement_speed = 100.0
+@export var jump_height := 2.0
 @export var hurtbox : Hurtbox
 @export var anim_player : AnimatedSprite2D
-const JUMP_VELOCITY = -400.0
+
+
+
+var jump_velocity:
+	get: return sqrt(2*gravity*jump_height * 32)
 
 
 
@@ -20,7 +25,7 @@ func _ready():
 	hurtbox.on_hit.connect(on_hurtbox_hit)
 	
 
-		
+
 
 
 

@@ -219,6 +219,7 @@ size = Vector2(10, 29)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player")]
 script = ExtResource("1_ll0nb")
+jump_height = 1.5
 hurtbox = NodePath("Hurtbox")
 anim_player = NodePath("AnimatedSprite2D")
 
