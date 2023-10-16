@@ -17,11 +17,11 @@ func _init_state(_t: Node) -> void:
 	_on_ready()
 
 ## Called when a state enters
-func _on_enter() -> void:
+func _on_enter(_prev_state : State) -> void:
 	pass
 
 ## Called when a state exits
-func _on_exit() -> void:
+func _on_exit(_new_state : State) -> void:
 	pass
 
 ## Equivalent to _input when the state is active

@@ -3,8 +3,8 @@ extends "res://src/states/player/movement_state.gd"
 @export var idle_state : State
 
 
-func _on_enter() -> void:
-	super()
+func  _on_enter(prev_state : State) -> void:
+	super(prev_state)
 	self.parent.anim_player.play("jump")
 
 func _on_physics_process(delta) -> State:

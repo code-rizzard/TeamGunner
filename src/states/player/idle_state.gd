@@ -6,8 +6,8 @@ extends "res://src/states/player/base_state.gd"
 @export var fall_state : State
 
 
-func _on_enter() -> void:
-	super()
+func  _on_enter(prev_state : State) -> void:
+	super(prev_state)
 	self.parent.anim_player.play("idle")
 
 

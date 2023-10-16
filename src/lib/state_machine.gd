@@ -25,14 +25,15 @@ func _ready():
 	for c in get_children():
 		if c is State:
 			c._init_state(target)
-	current_state._on_enter()
+	current_state._on_enter(null)
 
 func _change_state(new_state : State):
 	if new_state == null or new_state == current_state:
 		return 
-	current_state._on_exit()
+	current_state._on_exit(new_state)
+	var prev = current_state
 	current_state = new_state
-	new_state._on_enter()
+	new_state._on_enter(prev)
 
 
 func _unhandled_input(event: InputEvent) -> void:

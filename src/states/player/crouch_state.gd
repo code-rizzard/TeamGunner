@@ -6,8 +6,8 @@ extends "res://src/states/player/base_state.gd"
 
 var prev_input : float = 0
 
-func _on_enter() -> void:
-	super()
+func _on_enter(prev_state : State) -> void:
+	super(prev_state)
 	parent.anim_player.play("crouch")
 
 
