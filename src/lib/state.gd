@@ -24,6 +24,10 @@ func _on_enter() -> void:
 func _on_exit() -> void:
 	pass
 
+## Equivalent to _input when the state is active
+func _on_unhandled_input(_event : InputEvent) -> State:
+	return null
+
 ## Equivalent to _process when state is active
 func _on_process(_delta : float) -> State:
 	return null

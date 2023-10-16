@@ -28,7 +28,16 @@ func _ready():
 	current_state._on_enter()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if current_state == null:
+		return
+	var new_state = current_state._on_unhandled_input(event)
+	if new_state != null and new_state != current_state:
+		current_state._on_exit()
+		current_state = new_state
+		new_state._on_enter()
 
+	
 func _process(delta):
 	if current_state == null:
 		return
