@@ -9,11 +9,11 @@
 [ext_resource type="Script" path="res://src/lib/state_machine.gd" id="7_g876t"]
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/idle_state.gd" id="8_6p1n5"]
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/fall_state.gd" id="8_m5h34"]
-[ext_resource type="Script" path="res://src/mobs/enemies/red/states/walk_state.gd" id="10_uuykt"]
+[ext_resource type="Script" path="res://src/mobs/enemies/red/states/wander_state.gd" id="10_8amvk"]
 [ext_resource type="Script" path="res://src/lib/state_viewer.gd" id="11_nb540"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tadrg"]
-size = Vector2(18, 33)
+size = Vector2(18, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvcjo"]
 atlas = ExtResource("1_cilhe")
@@ -195,7 +195,7 @@ anim_player = NodePath("AnimatedSprite2D")
 muzzle = NodePath("Muzzle")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -1.5)
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_tadrg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -222,13 +222,13 @@ script = ExtResource("8_m5h34")
 idle_state = NodePath("../Idle")
 fall_state = NodePath(".")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "fall_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state", "fall_state")]
 script = ExtResource("8_6p1n5")
-walk_state = NodePath("../WalkState")
+wander_state = NodePath("../WanderState")
 fall_state = NodePath("../FallState")
 
-[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
-script = ExtResource("10_uuykt")
+[node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("10_8amvk")
 idle_state = NodePath("../Idle")
 
 [node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]

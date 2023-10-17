@@ -1,7 +1,7 @@
 extends State
 
 
-@onready var parent : Node2D
+@onready var parent : CharacterBody2D
 
 func _on_ready():
 	parent = target
