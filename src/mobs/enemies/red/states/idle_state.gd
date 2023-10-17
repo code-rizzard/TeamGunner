@@ -1,7 +1,7 @@
 extends "res://src/mobs/enemies/red/states/base_state.gd"
 
 
-@export var walk_state : State
+@export var wander_state : State
 @export var shoot_state : State
 @export var fall_state : State
 
@@ -20,7 +20,7 @@ func _on_physics_process(_delta) -> State :
 	if not parent.is_on_floor() and parent.velocity.y > 0:
 		return fall_state
 	
-	return walk_state
+	return wander_state
 
 
 func _on_after_physics_process(delta : float) -> State:

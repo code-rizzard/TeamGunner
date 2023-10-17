@@ -8,7 +8,7 @@ func _on_physics_process(delta: float) -> State:
     var r = super(delta)
     if r != null:
         return r
-    parent.velocity.x = parent.movement_speed
+    parent.velocity.x = parent.movement_speed * parent.look_direction
     parent.velocity.y += parent.gravity * delta
     return null
 
