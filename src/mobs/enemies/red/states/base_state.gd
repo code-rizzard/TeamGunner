@@ -4,6 +4,7 @@ extends State
 @onready var parent : CharacterBody2D
 
 func _on_ready():
+	super()
 	parent = target
 
 
