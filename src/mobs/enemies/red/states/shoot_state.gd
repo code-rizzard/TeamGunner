@@ -11,12 +11,12 @@ func _on_physics_process(delta : float) -> State:
 	var r := super(delta)
 	if r != null:
 		return r
-	var dist : Vector2 = parent.target.global_position - parent.global_position
-	if abs(dist.y) >=32 or abs(dist.x) >= 5 * 32.5:
+	var dist : Vector2 = abs(parent.target.global_position - parent.global_position)
+	if dist.y >=32 or dist.x >= 5 * 32.5:
 		parent.target = null
 		return idle_state
 	
-	if can_shoot and abs(dist.y) < 32:
+	if can_shoot and dist.y < 32:
 		shoot()
 	return null
 
