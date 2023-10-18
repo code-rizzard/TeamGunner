@@ -24,7 +24,7 @@ func _ready():
 
 	for c in get_children():
 		if c is State:
-			c._init_state(target)
+			c._init_state(target, self)
 	current_state._on_enter(null)
 
 func _change_state(new_state : State):

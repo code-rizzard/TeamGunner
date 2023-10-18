@@ -2,6 +2,7 @@ class_name State
 extends Node
 
 var target : Node
+var _state_machine : StateMachine
 
 
 ## This is called when the state is ready after parent is initialized. Initialize variables here that are dependent on the state machine.
@@ -10,11 +11,15 @@ func _on_ready() -> void:
 
 
 ## This is a private method initializing default behavior of a State
-func _init_state(_t: Node) -> void:
+func _init_state(_t: Node, machine : StateMachine) -> void:
 	target = _t
+	_state_machine = machine
 	set_process(false)
 	set_physics_process(false)
 	_on_ready()
+
+func is_active() -> bool:
+	return _state_machine.current_state == self
 
 ## Called when a state enters
 func _on_enter(_prev_state : State) -> void:
