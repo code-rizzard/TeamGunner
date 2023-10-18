@@ -220,9 +220,12 @@ animations = [{
 size = Vector2(10, 29)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player", "muzzle")]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_ll0nb")
 movement_speed = 125.0
 jump_height = 2.2
+attack_mask = 33
 hurtbox = NodePath("Hurtbox")
 anim_player = NodePath("AnimatedSprite2D")
 muzzle = NodePath("Muzzle")
@@ -237,6 +240,9 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
 script = ExtResource("7_ab1wd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
@@ -249,7 +255,6 @@ target = NodePath("..")
 initial_state = NodePath("IdleState")
 
 [node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]
-visible = false
 position = Vector2(0, -20.165)
 script = ExtResource("13_k2ic6")
 text_label = NodePath("Label")
