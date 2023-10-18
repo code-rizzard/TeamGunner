@@ -12,7 +12,7 @@ func  _on_enter(prev_state : State) -> void:
 	self.parent.anim_player.play("idle")
 	if prev_state == wander_state:
 		stay_on_idle = true
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(1).timeout
 		parent.anim_player.flip_h = !parent.anim_player.flip_h
 		stay_on_idle = false
 
