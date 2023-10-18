@@ -18,7 +18,8 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area:Area2D) -> void:
 	if area is Hurtbox:
 		var a := area as Hurtbox
-		a.hit(DamageInfo.new(10, source))
+
+		a.hit(DamageInfo.new(10, source if is_instance_valid(source) else null))
 		queue_free()
 
 

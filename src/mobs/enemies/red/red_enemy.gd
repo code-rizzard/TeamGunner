@@ -9,7 +9,9 @@ extends CharacterBody2D
 @export var muzzle : Marker2D
 
 
-var target : Node2D
+var target : Node2D :
+	get: 
+		return target if is_instance_valid(target) else null
 
 var look_direction : 
 	get: return -1 if anim_player.flip_h else 1
