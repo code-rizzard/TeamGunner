@@ -255,6 +255,7 @@ target = NodePath("..")
 initial_state = NodePath("IdleState")
 
 [node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]
+visible = false
 position = Vector2(0, -20.165)
 script = ExtResource("9_0ksd5")
 text_label = NodePath("Label")
