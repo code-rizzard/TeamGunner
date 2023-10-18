@@ -5,15 +5,21 @@ var can_shoot := true
 
 var too_far_timer : SceneTreeTimer
 var happened_timer := 6.0
+var can_now_shoot := false
 
 func  _on_enter(prev_state : State) -> void:
 	super(prev_state)
 	self.parent.anim_player.play("attack")
+	await get_tree().create_timer(0.2).timeout
+	if not is_active():
+		return 
+	can_now_shoot = true
 
 func _on_exit(new : State) -> void:
 	super(new)
 	too_far_timer = null
 	happened_timer = 6
+	can_now_shoot = false
 
 func _on_physics_process(delta : float) -> State:
 	happened_timer -= delta
@@ -41,7 +47,7 @@ func _on_physics_process(delta : float) -> State:
 		
 
 
-	if can_shoot and dist.y < 32:
+	if can_shoot and can_now_shoot and dist.y < 32:
 		shoot()
 	if happened_timer <= 0:
 		parent.target = null
