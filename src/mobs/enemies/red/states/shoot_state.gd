@@ -18,7 +18,6 @@ func _on_exit(new : State) -> void:
 func _on_physics_process(delta : float) -> State:
 	happened_timer -= delta
 	var r := super(delta)
-	print(happened_timer)
 	if r != null:
 		return r
 	if parent.target == null:
