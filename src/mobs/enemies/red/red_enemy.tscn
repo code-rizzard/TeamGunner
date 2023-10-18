@@ -289,6 +289,7 @@ right_cliff_detector = NodePath("../../Right")
 shoot_state = NodePath("../ShootState")
 
 [node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]
+visible = false
 script = ExtResource("11_nb540")
 text_label = NodePath("Label")
 
