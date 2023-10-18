@@ -26,5 +26,5 @@ func _on_physics_process(delta : float) -> State:
 func shoot():
 	parent.shoot()
 	can_shoot = false
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(1).timeout
 	can_shoot = true
