@@ -192,6 +192,7 @@ size = Vector2(17, 35)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_bc41w")
+attack_mask = 17
 hurtbox = NodePath("Hurtbox")
 anim_player = NodePath("AnimatedSprite2D")
 muzzle = NodePath("Muzzle")

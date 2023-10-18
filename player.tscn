@@ -225,6 +225,7 @@ collision_mask = 3
 script = ExtResource("1_ll0nb")
 movement_speed = 125.0
 jump_height = 2.2
+attack_mask = 33
 hurtbox = NodePath("Hurtbox")
 anim_player = NodePath("AnimatedSprite2D")
 muzzle = NodePath("Muzzle")

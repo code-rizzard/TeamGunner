@@ -8,7 +8,7 @@ size = Vector2(2, 2)
 
 [node name="bullet" type="Area2D"]
 collision_layer = 0
-monitorable = false
+collision_mask = 3
 script = ExtResource("1_sq51j")
 speed = 500.0
 

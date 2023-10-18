@@ -4,9 +4,10 @@ extends Hitbox
 @export var speed := 1000.0
 var direction := Vector2.RIGHT
 
-func setup(dir : Vector2, pos: Vector2):
+func setup(dir : Vector2, pos: Vector2, attack_mask : int):
 	global_position = pos
 	direction = dir
+	collision_mask = attack_mask
 
 func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
