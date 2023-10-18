@@ -3,6 +3,7 @@ extends "res://src/mobs/enemies/red/states/move_state.gd"
 
 
 @export var idle_state : State
+@export_flags_2d_physics var wall_collision_mask : int
 @export var left_cliff_detector : RayCast2D
 @export var right_cliff_detector : RayCast2D
 
@@ -19,7 +20,7 @@ func  _on_enter(prev_state : State) -> void:
 	self.parent.anim_player.play("walk")
 
 func detect_wall() -> bool:
-	var query = PhysicsRayQueryParameters2D.create(parent.global_position, parent.global_position + Vector2.RIGHT * 32 * parent.look_direction, 4294967295, [parent.get_rid()])
+	var query = PhysicsRayQueryParameters2D.create(parent.global_position, parent.global_position + Vector2.RIGHT * 32 * parent.look_direction, wall_collision_mask, [parent.get_rid()])
 	var hit  = space.intersect_ray(query)
 	return not hit.is_empty()
 

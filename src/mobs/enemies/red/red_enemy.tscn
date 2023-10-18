@@ -189,6 +189,8 @@ animations = [{
 size = Vector2(17, 35)
 
 [node name="red_enemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player", "muzzle")]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_bc41w")
 hurtbox = NodePath("Hurtbox")
 anim_player = NodePath("AnimatedSprite2D")
@@ -204,6 +206,9 @@ animation = &"walk"
 autoplay = "idle"
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
 script = ExtResource("6_d3pqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
@@ -215,10 +220,12 @@ shape = SubResource("RectangleShape2D_3v5r8")
 [node name="Right" type="RayCast2D" parent="."]
 position = Vector2(11, 0)
 target_position = Vector2(0, 25)
+collision_mask = 3
 
 [node name="Left" type="RayCast2D" parent="."]
 position = Vector2(-14, 0)
 target_position = Vector2(0, 25)
+collision_mask = 3
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("target", "initial_state")]
 script = ExtResource("7_g876t")
@@ -238,6 +245,7 @@ fall_state = NodePath("../FallState")
 [node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "left_cliff_detector", "right_cliff_detector")]
 script = ExtResource("10_8amvk")
 idle_state = NodePath("../Idle")
+wall_collision_mask = 2
 left_cliff_detector = NodePath("../../Left")
 right_cliff_detector = NodePath("../../Right")
 
