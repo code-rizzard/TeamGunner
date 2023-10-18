@@ -21,7 +21,7 @@ func  _on_enter(prev_state : State) -> void:
 func detect_wall() -> bool:
 	var query = PhysicsRayQueryParameters2D.create(parent.global_position, parent.global_position + Vector2.RIGHT * 32 * parent.look_direction, 4294967295, [parent.get_rid()])
 	var hit  = space.intersect_ray(query)
-	return hit.is_empty()
+	return not hit.is_empty()
 
 func detect_edge() -> bool:
 	match parent.look_direction:
@@ -38,7 +38,7 @@ func _on_physics_process(delta: float) -> State:
 	if r != null:
 		return r
 	
-	if not detect_wall():
+	if detect_wall():
 		parent.anim_player.flip_h = !parent.anim_player.flip_h
 
 	if detect_edge():
