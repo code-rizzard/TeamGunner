@@ -39,10 +39,10 @@ func _on_physics_process(delta: float) -> State:
 		return r
 	
 	if detect_wall():
-		parent.anim_player.flip_h = !parent.anim_player.flip_h
+		return idle_state
 
 	if detect_edge():
-		parent.anim_player.flip_h = !parent.anim_player.flip_h
+		return idle_state
 
 	return null
 
