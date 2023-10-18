@@ -9,4 +9,4 @@ func shoot(dir : int):
 	get_tree().root.add_child(b)
 	var pos := position
 	pos.x *= dir
-	b.setup(Vector2.RIGHT * dir, parent.global_position + pos, parent.attack_mask)
+	b.setup(Vector2.RIGHT * dir, parent.global_position + pos, parent.attack_mask, parent)

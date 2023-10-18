@@ -44,8 +44,8 @@ func shoot():
 	muzzle.shoot(-1 if anim_player.flip_h else 1)
 
 
-func on_hurtbox_hit(damage : int):
-	health -= damage
+func on_hurtbox_hit(damage : DamageInfo):
+	health -= damage.damage
 	if health <= 0:
 		queue_free()
 

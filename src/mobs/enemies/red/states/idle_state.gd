@@ -6,6 +6,9 @@ extends "res://src/mobs/enemies/red/states/base_state.gd"
 
 var stay_on_idle := false
 
+
+
+
 func  _on_enter(prev_state : State) -> void:
 	super(prev_state)
 	self.parent.anim_player.play("idle")
