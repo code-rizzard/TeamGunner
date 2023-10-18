@@ -8,7 +8,7 @@ var source : Node2D
 func setup(dir : Vector2, pos: Vector2, attack_mask : int, _source : Node2D):
 	global_position = pos
 	direction = dir
-	collision_mask = attack_mask
+	collision_mask = attack_mask | collision_mask
 	source = _source
 
 func _physics_process(delta: float) -> void:
