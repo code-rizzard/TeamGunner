@@ -1,19 +1,35 @@
-[gd_scene load_steps=36 format=3 uid="uid://41mxgqppdhiw"]
+[gd_scene load_steps=43 format=3 uid="uid://41mxgqppdhiw"]
 
 [ext_resource type="Script" path="res://src/mobs/enemies/red/red_enemy.gd" id="1_bc41w"]
 [ext_resource type="Texture2D" uid="uid://cj2vn2t65ria4" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Death.png" id="1_cilhe"]
 [ext_resource type="Texture2D" uid="uid://c5u7kerchd3nu" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Jump.png" id="2_3a5hg"]
+[ext_resource type="Texture2D" uid="uid://b5o01n3mf2tl" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Crouch.png" id="2_i8tyt"]
 [ext_resource type="Texture2D" uid="uid://seh7madiryoi" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Idle.png" id="3_rtr20"]
 [ext_resource type="Texture2D" uid="uid://lbvrjlogs468" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Run.png" id="4_nfald"]
 [ext_resource type="Script" path="res://src/lib/hurtbox.gd" id="6_d3pqj"]
 [ext_resource type="Script" path="res://src/lib/state_machine.gd" id="7_g876t"]
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/idle_state.gd" id="8_6p1n5"]
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/fall_state.gd" id="8_m5h34"]
+[ext_resource type="Script" path="res://src/mobs/player/muzzle.gd" id="8_uddnq"]
+[ext_resource type="PackedScene" uid="uid://dvp0bf756ua0o" path="res://src/objects/bullet/bullet.tscn" id="9_a0sm7"]
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/wander_state.gd" id="10_8amvk"]
 [ext_resource type="Script" path="res://src/lib/state_viewer.gd" id="11_nb540"]
+[ext_resource type="Script" path="res://src/mobs/enemies/red/states/shoot_state.gd" id="13_cd67h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tadrg"]
 size = Vector2(18, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_darh0"]
+atlas = ExtResource("2_i8tyt")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cror8"]
+atlas = ExtResource("2_i8tyt")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae6e7"]
+atlas = ExtResource("2_i8tyt")
+region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvcjo"]
 atlas = ExtResource("1_cilhe")
@@ -103,6 +119,20 @@ region = Rect2(240, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_darh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cror8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae6e7")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_yvcjo")
 }, {
 "duration": 1.0,
@@ -188,11 +218,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3v5r8"]
 size = Vector2(17, 35)
 
-[node name="red_enemy" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player", "muzzle")]
+[node name="red_enemy" type="CharacterBody2D" node_paths=PackedStringArray("player_detector", "hurtbox", "anim_player", "muzzle")]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_bc41w")
 attack_mask = 17
+player_detector = NodePath("PlayerDetector")
 hurtbox = NodePath("Hurtbox")
 anim_player = NodePath("AnimatedSprite2D")
 muzzle = NodePath("Muzzle")
@@ -203,8 +234,10 @@ shape = SubResource("RectangleShape2D_tadrg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_e4gxe")
-animation = &"walk"
+animation = &"attack"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 32
@@ -217,6 +250,8 @@ position = Vector2(-1.5, -2.5)
 shape = SubResource("RectangleShape2D_3v5r8")
 
 [node name="Muzzle" type="Marker2D" parent="."]
+script = ExtResource("8_uddnq")
+bullet_scene = ExtResource("9_a0sm7")
 
 [node name="Right" type="RayCast2D" parent="."]
 position = Vector2(11, 0)
@@ -233,25 +268,27 @@ script = ExtResource("7_g876t")
 target = NodePath("..")
 initial_state = NodePath("Idle")
 
-[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state")]
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state", "shoot_state")]
 script = ExtResource("8_m5h34")
 idle_state = NodePath("../Idle")
 fall_state = NodePath(".")
+shoot_state = NodePath("../ShootState")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state", "fall_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state", "fall_state", "shoot_state")]
 script = ExtResource("8_6p1n5")
 wander_state = NodePath("../WanderState")
 fall_state = NodePath("../FallState")
+shoot_state = NodePath("../ShootState")
 
-[node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "left_cliff_detector", "right_cliff_detector")]
+[node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "left_cliff_detector", "right_cliff_detector", "shoot_state")]
 script = ExtResource("10_8amvk")
 idle_state = NodePath("../Idle")
 wall_collision_mask = 2
 left_cliff_detector = NodePath("../../Left")
 right_cliff_detector = NodePath("../../Right")
+shoot_state = NodePath("../ShootState")
 
 [node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]
-visible = false
 script = ExtResource("11_nb540")
 text_label = NodePath("Label")
 
@@ -261,3 +298,11 @@ offset_top = -40.0
 offset_right = 23.0
 offset_bottom = -14.0
 text = "sadf"
+
+[node name="ShootState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("13_cd67h")
+idle_state = NodePath("../Idle")
+
+[node name="PlayerDetector" type="RayCast2D" parent="."]
+target_position = Vector2(160, 0)
+collision_mask = 5

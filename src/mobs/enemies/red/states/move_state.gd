@@ -1,6 +1,5 @@
 extends "res://src/mobs/enemies/red/states/base_state.gd"
 
-@export var shoot_state : State
 @export var fall_state : State
 
 
