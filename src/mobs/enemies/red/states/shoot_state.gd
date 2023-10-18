@@ -4,6 +4,7 @@ extends "res://src/mobs/enemies/red/states/base_state.gd"
 var can_shoot := true
 
 var too_far_timer : SceneTreeTimer
+var happened_timer := 6.0
 
 func  _on_enter(prev_state : State) -> void:
 	super(prev_state)
@@ -12,15 +13,18 @@ func  _on_enter(prev_state : State) -> void:
 func _on_exit(new : State) -> void:
 	super(new)
 	too_far_timer = null
+	happened_timer = 6
 
 func _on_physics_process(delta : float) -> State:
+	happened_timer -= delta
 	var r := super(delta)
+	print(happened_timer)
 	if r != null:
 		return r
 	if parent.target == null:
 		return idle_state
 	var dist : Vector2 = abs(parent.target.global_position - parent.global_position)
-
+	
 	if dist.x >= 5.5 * 32:
 		parent.target = null
 		return idle_state
@@ -40,10 +44,14 @@ func _on_physics_process(delta : float) -> State:
 
 	if can_shoot and dist.y < 32:
 		shoot()
+	if happened_timer <= 0:
+		parent.target = null
+		return idle_state
 	return null
 
 
 func shoot():
+	happened_timer = 6
 	parent.shoot()
 	can_shoot = false
 	await get_tree().create_timer(1).timeout
