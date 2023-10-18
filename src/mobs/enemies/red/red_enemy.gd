@@ -3,9 +3,13 @@ extends CharacterBody2D
 @export var max_health := 100
 @export var movement_speed = 100.0
 @export_flags_2d_physics var attack_mask := 1
+@export var player_detector : RayCast2D
 @export var hurtbox : Hurtbox
 @export var anim_player : AnimatedSprite2D
 @export var muzzle : Marker2D
+
+
+var target : Node2D
 
 var look_direction : 
 	get: return -1 if anim_player.flip_h else 1
@@ -19,6 +23,7 @@ const muzzle_positions := {
 }
 
 @onready var health := max_health
+@onready var space := get_world_2d().direct_space_state
 var gravity: int =  ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
@@ -35,7 +40,16 @@ func on_hurtbox_hit(damage : int):
 	if health <= 0:
 		queue_free()
 
+func _physics_process(_delta: float) -> void:
+	print(look_direction)
+	try_detect_target()
 
+
+func try_detect_target():
+	if sign(player_detector.target_position.x) != look_direction:
+		player_detector.target_position.x *= -1
+	if player_detector.is_colliding() and target == null:
+		target = player_detector.get_collider()
 	
 
 
