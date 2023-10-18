@@ -3,6 +3,8 @@ extends "res://src/mobs/enemies/red/states/move_state.gd"
 
 
 @export var idle_state : State
+@export var left_cliff_detector : RayCast2D
+@export var right_cliff_detector : RayCast2D
 
 var space : PhysicsDirectSpaceState2D
 
@@ -21,6 +23,15 @@ func detect_wall() -> bool:
 	var hit  = space.intersect_ray(query)
 	return hit.is_empty()
 
+func detect_edge() -> bool:
+	match parent.look_direction:
+		1:
+			return not right_cliff_detector.is_colliding()
+		-1:
+			return not left_cliff_detector.is_colliding()
+		_:
+			return false
+
 
 func _on_physics_process(delta: float) -> State:
 	var r := super(delta)
@@ -29,5 +40,9 @@ func _on_physics_process(delta: float) -> State:
 	
 	if not detect_wall():
 		parent.anim_player.flip_h = !parent.anim_player.flip_h
+
+	if detect_edge():
+		parent.anim_player.flip_h = !parent.anim_player.flip_h
+
 	return null
 

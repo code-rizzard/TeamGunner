@@ -212,6 +212,14 @@ shape = SubResource("RectangleShape2D_3v5r8")
 
 [node name="Muzzle" type="Marker2D" parent="."]
 
+[node name="Right" type="RayCast2D" parent="."]
+position = Vector2(11, 0)
+target_position = Vector2(0, 25)
+
+[node name="Left" type="RayCast2D" parent="."]
+position = Vector2(-14, 0)
+target_position = Vector2(0, 25)
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("target", "initial_state")]
 script = ExtResource("7_g876t")
 target = NodePath("..")
@@ -227,9 +235,11 @@ script = ExtResource("8_6p1n5")
 wander_state = NodePath("../WanderState")
 fall_state = NodePath("../FallState")
 
-[node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "left_cliff_detector", "right_cliff_detector")]
 script = ExtResource("10_8amvk")
 idle_state = NodePath("../Idle")
+left_cliff_detector = NodePath("../../Left")
+right_cliff_detector = NodePath("../../Right")
 
 [node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]
 visible = false
