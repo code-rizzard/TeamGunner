@@ -29,7 +29,7 @@ func _on_physics_process(delta : float) -> State:
 	if (dist.y >=32 * 3 or dist.x > 32 * 2) :
 	
 		if too_far_timer == null:
-			too_far_timer = get_tree().create_timer(2.5)
+			too_far_timer = get_tree().create_timer(1.5)
 		elif too_far_timer.time_left == 0:
 			if (dist.y >=32 * 2 and dist.x > 32 * 2) :
 				parent.target = null
