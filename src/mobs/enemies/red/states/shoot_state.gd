@@ -21,7 +21,7 @@ func _on_physics_process(delta : float) -> State:
 		return idle_state
 	var dist : Vector2 = abs(parent.target.global_position - parent.global_position)
 
-	if dist.x >= 5 * 32.5:
+	if dist.x >= 5.5 * 32:
 		parent.target = null
 		return idle_state
 	
