@@ -217,7 +217,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3v5r8"]
-size = Vector2(17, 35)
+size = Vector2(19, 28)
 
 [node name="red_enemy" type="CharacterBody2D" node_paths=PackedStringArray("player_detector", "hurtbox", "anim_player", "muzzle")]
 collision_layer = 8
@@ -247,7 +247,7 @@ monitoring = false
 script = ExtResource("6_d3pqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-1.5, -2.5)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_3v5r8")
 
 [node name="Muzzle" type="Marker2D" parent="."]
