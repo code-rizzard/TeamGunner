@@ -60,6 +60,7 @@ shoot={
 2d_physics/layer_4="mobs"
 2d_physics/layer_5="ally_hurtbox"
 2d_physics/layer_6="enemy_hurtbox"
+2d_physics/layer_7="pickups"
 
 [rendering]
 
