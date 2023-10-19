@@ -3,11 +3,18 @@ class_name NpcMob
 
 @export var player_detector : RayCast2D
 
-var target : Node2D :
+var target : MobCharacter :
 	get: 
-		return target if is_instance_valid(target) else null
+		return target 
+	set(v):
+		if target != null:
+			target.on_die.disconnect(_on_target_die)
+		target = v
+		if target != null:
+			target.on_die.connect(_on_target_die)
 	
-
+func _on_target_die():
+	target = null
 
 func try_detect_target():
 	if sign(player_detector.target_position.x) != look_direction:

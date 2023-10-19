@@ -20,9 +20,6 @@ var jump_velocity:
 var input_direction : float
 
 
-func _ready():
-	hurtbox.on_hit.connect(on_hurtbox_hit)
-	
 
 func _input(_event):
 	if Input.is_action_just_pressed("shoot"):
@@ -31,11 +28,6 @@ func _input(_event):
 func shoot():
 	muzzle.shoot(-1 if anim_player.flip_h else 1)
 
-
-func on_hurtbox_hit(damage : DamageInfo):
-	health -= damage.damage
-	if health <= 0:
-		queue_free()
 
 
 	

@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name MobCharacter
 
+
+signal on_die
+
 @export var max_health := 100
 @export var movement_speed = 100.0
 @export var jump_height := 2.0
@@ -15,3 +18,17 @@ var look_direction :
 
 @onready var health := max_health
 var gravity: int =  ProjectSettings.get_setting("physics/2d/default_gravity")
+
+
+
+func _ready():
+	hurtbox.on_hit.connect(_on_hurtbox_hit)
+
+func _on_hurtbox_hit(damage : DamageInfo):
+	health -= damage.damage
+	if health <= 0:
+		die()
+
+func die():
+	on_die.emit()
+	queue_free()
