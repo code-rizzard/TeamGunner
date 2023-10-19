@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://41mxgqppdhiw"]
+[gd_scene load_steps=44 format=3 uid="uid://41mxgqppdhiw"]
 
 [ext_resource type="Script" path="res://src/mobs/enemies/red/red_enemy.gd" id="1_bc41w"]
 [ext_resource type="Texture2D" uid="uid://cj2vn2t65ria4" path="res://assets/CHARACTER_SPRITES/Red/Gunner_Red_Death.png" id="1_cilhe"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/wander_state.gd" id="10_8amvk"]
 [ext_resource type="Script" path="res://src/lib/state_viewer.gd" id="11_nb540"]
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/shoot_state.gd" id="13_cd67h"]
+[ext_resource type="Script" path="res://src/lib/state.gd" id="16_sl5hi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tadrg"]
 size = Vector2(18, 30)
@@ -268,26 +269,6 @@ script = ExtResource("7_g876t")
 target = NodePath("..")
 initial_state = NodePath("Idle")
 
-[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state", "shoot_state")]
-script = ExtResource("8_m5h34")
-idle_state = NodePath("../Idle")
-fall_state = NodePath(".")
-shoot_state = NodePath("../ShootState")
-
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state", "fall_state", "shoot_state")]
-script = ExtResource("8_6p1n5")
-wander_state = NodePath("../WanderState")
-fall_state = NodePath("../FallState")
-shoot_state = NodePath("../ShootState")
-
-[node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "left_cliff_detector", "right_cliff_detector", "shoot_state")]
-script = ExtResource("10_8amvk")
-idle_state = NodePath("../Idle")
-wall_collision_mask = 2
-left_cliff_detector = NodePath("../../Left")
-right_cliff_detector = NodePath("../../Right")
-shoot_state = NodePath("../ShootState")
-
 [node name="StateViewer" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("text_label")]
 visible = false
 script = ExtResource("11_nb540")
@@ -300,9 +281,36 @@ offset_right = 23.0
 offset_bottom = -14.0
 text = "sadf"
 
-[node name="ShootState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state", "shoot_state", "death_state")]
+script = ExtResource("8_m5h34")
+idle_state = NodePath("../Idle")
+fall_state = NodePath(".")
+shoot_state = NodePath("../ShootState")
+death_state = NodePath("../DeathState")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state", "fall_state", "shoot_state", "death_state")]
+script = ExtResource("8_6p1n5")
+wander_state = NodePath("../WanderState")
+fall_state = NodePath("../FallState")
+shoot_state = NodePath("../ShootState")
+death_state = NodePath("../DeathState")
+
+[node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "left_cliff_detector", "right_cliff_detector", "shoot_state", "death_state")]
+script = ExtResource("10_8amvk")
+idle_state = NodePath("../Idle")
+wall_collision_mask = 2
+left_cliff_detector = NodePath("../../Left")
+right_cliff_detector = NodePath("../../Right")
+shoot_state = NodePath("../ShootState")
+death_state = NodePath("../DeathState")
+
+[node name="ShootState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "death_state")]
 script = ExtResource("13_cd67h")
 idle_state = NodePath("../Idle")
+death_state = NodePath("../DeathState")
+
+[node name="DeathState" type="Node" parent="StateMachine"]
+script = ExtResource("16_sl5hi")
 
 [node name="PlayerDetector" type="RayCast2D" parent="."]
 target_position = Vector2(160, 0)

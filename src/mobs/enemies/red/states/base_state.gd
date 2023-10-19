@@ -1,6 +1,7 @@
 extends State
 
 @export var shoot_state : State
+@export var death_state : State
 @onready var parent : CharacterBody2D
 
 func _on_ready():
@@ -15,6 +16,11 @@ func on_hurtbox_hit(_damage : DamageInfo) -> void:
 	if parent.target == null:
 		parent.set_target(_damage.damager)
 
+func _on_process(delta) -> State:
+	var r := super(delta)
+	if parent.is_dead:
+		return death_state
+	return r
 
 func _on_physics_process(delta: float) -> State:
 	var r = super(delta)
