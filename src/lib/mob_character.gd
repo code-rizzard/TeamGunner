@@ -31,9 +31,6 @@ func _on_hurtbox_hit(damage : DamageInfo):
 		die()
 
 func die():
-	on_die.emit()
 	is_dead = true
-	anim_player.play("death")
-	hurtbox.set_deferred("monitorable", false)
-	await anim_player.animation_finished
-	queue_free()
+	on_die.emit()
+	

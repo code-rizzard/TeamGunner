@@ -13,6 +13,7 @@ const muzzle_positions := {
 	"jump": Vector2(10,-3),
 	"fall": Vector2(10,-3),
 	"crouch": Vector2(10,1),
+	"death": Vector2(10,1),
 }
 
 var jump_velocity:
@@ -25,7 +26,7 @@ var input_direction : float
 
 
 func _input(_event):
-	if Input.is_action_just_pressed("shoot") and can_shoot and current_ammo >0:
+	if not is_dead and Input.is_action_just_pressed("shoot") and can_shoot and current_ammo >0:
 		shoot()	
 
 func shoot():
