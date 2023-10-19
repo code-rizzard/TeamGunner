@@ -195,7 +195,6 @@ texture = ExtResource("5_lp0md")
 
 [node name="Pine3" type="Sprite2D" parent="Node"]
 position = Vector2(1664, 515)
-scale = Vector2(1, 1)
 texture = ExtResource("3_vsigm")
 
 [node name="Pine4" type="Sprite2D" parent="Node"]
