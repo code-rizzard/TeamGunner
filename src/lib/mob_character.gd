@@ -17,8 +17,9 @@ var look_direction :
 	get: return -1 if anim_player.flip_h else 1
 
 @onready var health := max_health
-var gravity: int =  ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var gravity: int =  ProjectSettings.get_setting("physics/2d/default_gravity")
+var is_dead := false
 
 
 func _ready():
@@ -31,4 +32,8 @@ func _on_hurtbox_hit(damage : DamageInfo):
 
 func die():
 	on_die.emit()
+	is_dead = true
+	anim_player.play("death")
+	hurtbox.set_deferred("monitorable", false)
+	await anim_player.animation_finished
 	queue_free()

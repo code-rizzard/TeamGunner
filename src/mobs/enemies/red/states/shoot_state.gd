@@ -21,6 +21,7 @@ func _on_exit(new : State) -> void:
 	happened_timer = 6
 	can_now_shoot = false
 
+
 func _on_physics_process(delta : float) -> State:
 	happened_timer -= delta
 	var r := super(delta)
@@ -31,7 +32,7 @@ func _on_physics_process(delta : float) -> State:
 	var dist : Vector2 = abs(parent.target.global_position - parent.global_position)
 	
 	if dist.x >= 5.5 * 32:
-		parent.target = null
+		parent.set_target(null)
 		return idle_state
 	
 
@@ -41,7 +42,7 @@ func _on_physics_process(delta : float) -> State:
 			too_far_timer = get_tree().create_timer(1.5)
 		elif too_far_timer.time_left == 0:
 			if (dist.y >=32 * 2 and dist.x > 32 * 2) :
-				parent.target = null
+				parent.set_target(null)
 				return idle_state
 			too_far_timer = null
 		
@@ -50,7 +51,7 @@ func _on_physics_process(delta : float) -> State:
 	if can_shoot and can_now_shoot and dist.y < 32:
 		shoot()
 	if happened_timer <= 0:
-		parent.target = null
+		parent.set_target(null)
 		return idle_state
 	return null
 

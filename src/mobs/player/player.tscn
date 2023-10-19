@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://syrupjhhqtn8"]
+[gd_scene load_steps=45 format=3 uid="uid://syrupjhhqtn8"]
 
 [ext_resource type="Script" path="res://src/mobs/player/Player.gd" id="1_kf0vx"]
 [ext_resource type="Texture2D" uid="uid://cbamo15gn7dll" path="res://assets/CHARACTER_SPRITES/Green/Gunner_Green_Crouch.png" id="2_ywtdh"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/states/player/crouch_state.gd" id="13_6m5xh"]
 [ext_resource type="Script" path="res://src/states/player/fall_state.gd" id="14_g2c32"]
 [ext_resource type="Script" path="res://src/mobs/player/muzzle.gd" id="15_f77at"]
+[ext_resource type="Script" path="res://src/lib/state.gd" id="15_sc5hx"]
 [ext_resource type="PackedScene" uid="uid://dvp0bf756ua0o" path="res://src/objects/bullet/bullet.tscn" id="16_w6rpr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhyqu"]
@@ -267,37 +268,45 @@ offset_right = 45.0
 offset_bottom = 8.0
 text = "asdfads"
 
-[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "fall_state")]
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "fall_state", "death_state")]
 script = ExtResource("10_svvad")
 idle_state = NodePath("../IdleState")
 jump_state = NodePath("../JumpState")
 crouch_state = NodePath("../Crouch")
 fall_state = NodePath("../FallState")
+death_state = NodePath("../DeatehState")
 
-[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "jump_state", "crouch_state", "fall_state")]
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "jump_state", "crouch_state", "fall_state", "death_state")]
 script = ExtResource("11_8tmw7")
 walk_state = NodePath("../WalkState")
 jump_state = NodePath("../JumpState")
 crouch_state = NodePath("../Crouch")
 fall_state = NodePath("../FallState")
+death_state = NodePath("../DeatehState")
 
-[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "crouch_state", "fall_state")]
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "crouch_state", "fall_state", "death_state")]
 script = ExtResource("12_1fggs")
 jump_state = NodePath(".")
 crouch_state = NodePath("../Crouch")
 fall_state = NodePath("../FallState")
+death_state = NodePath("../DeatehState")
 
-[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state")]
+[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "death_state")]
 script = ExtResource("13_6m5xh")
 idle_state = NodePath("../IdleState")
 jump_state = NodePath("../JumpState")
+death_state = NodePath("../DeatehState")
 
-[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "fall_state")]
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "fall_state", "death_state")]
 script = ExtResource("14_g2c32")
 idle_state = NodePath("../IdleState")
 jump_state = NodePath("../JumpState")
 crouch_state = NodePath("../Crouch")
 fall_state = NodePath(".")
+death_state = NodePath("../DeatehState")
+
+[node name="DeatehState" type="Node" parent="StateMachine"]
+script = ExtResource("15_sc5hx")
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(16, -3)
