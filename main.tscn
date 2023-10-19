@@ -173,32 +173,54 @@ scale = Vector2(3.02784, 3.02784)
 texture = ExtResource("2_50pqb")
 region_enabled = true
 
-[node name="Mountain2" type="Sprite2D" parent="Node"]
-position = Vector2(887, 224)
-scale = Vector2(1.35827, 1.35827)
+[node name="Mountain4" type="Sprite2D" parent="Node"]
+position = Vector2(-28, 408)
+scale = Vector2(0.32628, 0.32628)
 texture = ExtResource("5_lp0md")
 
-[node name="Mountain4" type="Sprite2D" parent="Node"]
-position = Vector2(-631, 303)
-scale = Vector2(1.35827, 1.35827)
+[node name="Mountain7" type="Sprite2D" parent="Node"]
+position = Vector2(-295, 368)
+scale = Vector2(0.358634, 0.619833)
 texture = ExtResource("5_lp0md")
 
 [node name="Mountain" type="Sprite2D" parent="Node"]
-position = Vector2(190, 421)
-scale = Vector2(1.22047, 1.22047)
+position = Vector2(-69, 438)
+scale = Vector2(0.631889, 0.631889)
+texture = ExtResource("5_lp0md")
+
+[node name="Mountain8" type="Sprite2D" parent="Node"]
+position = Vector2(363, 378)
+scale = Vector2(0.74065, 0.74065)
+texture = ExtResource("5_lp0md")
+
+[node name="Mountain2" type="Sprite2D" parent="Node"]
+position = Vector2(812, 445)
+scale = Vector2(0.883859, 0.883859)
 texture = ExtResource("5_lp0md")
 
 [node name="Mountain3" type="Sprite2D" parent="Node"]
-position = Vector2(1538, 387)
-scale = Vector2(1.22047, 1.22047)
+position = Vector2(1694, 341)
+scale = Vector2(1.00787, 1.00787)
+texture = ExtResource("5_lp0md")
+
+[node name="Mountain5" type="Sprite2D" parent="Node"]
+position = Vector2(1369, 377)
+scale = Vector2(0.795275, 0.795275)
+texture = ExtResource("5_lp0md")
+
+[node name="Mountain6" type="Sprite2D" parent="Node"]
+position = Vector2(1845, 387)
+scale = Vector2(0.795275, 0.795275)
 texture = ExtResource("5_lp0md")
 
 [node name="Pine3" type="Sprite2D" parent="Node"]
-position = Vector2(1664, 515)
+position = Vector2(1688, 513)
+scale = Vector2(1, 1.80743)
 texture = ExtResource("3_vsigm")
 
 [node name="Pine4" type="Sprite2D" parent="Node"]
-position = Vector2(320, 549)
+position = Vector2(310, 584)
+scale = Vector2(1, 1.57538)
 texture = ExtResource("4_318mb")
 
 [node name="TileMap" type="TileMap" parent="."]
