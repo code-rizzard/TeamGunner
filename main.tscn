@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bf1br1pecnktq"]
+[gd_scene load_steps=11 format=3 uid="uid://bf1br1pecnktq"]
 
 [ext_resource type="Script" path="res://src/camera/camera_follow.gd" id="1_gco5g"]
 [ext_resource type="PackedScene" uid="uid://syrupjhhqtn8" path="res://src/mobs/player/player.tscn" id="1_shuym"]
+[ext_resource type="Texture2D" uid="uid://d38tnnl6c6cw" path="res://assets/background/sky_cloud.png" id="2_50pqb"]
 [ext_resource type="Texture2D" uid="uid://cmfv17ot6g68v" path="res://assets/tileset.png" id="3_vacjy"]
+[ext_resource type="Texture2D" uid="uid://0pdj2nxr0yi7" path="res://assets/background/pine1.png" id="3_vsigm"]
+[ext_resource type="Texture2D" uid="uid://crumug3whkcxf" path="res://assets/background/pine2.png" id="4_318mb"]
 [ext_resource type="PackedScene" uid="uid://41mxgqppdhiw" path="res://src/mobs/enemies/red/red_enemy.tscn" id="4_favop"]
+[ext_resource type="Texture2D" uid="uid://dksg0moqemugt" path="res://assets/background/mountain.png" id="5_lp0md"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_urw1v"]
 texture = ExtResource("3_vacjy")
@@ -152,6 +156,51 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("1_gco5g")
 target = NodePath("../Player")
+
+[node name="Node" type="Node2D" parent="."]
+z_index = -10
+
+[node name="SkyCloud2" type="Sprite2D" parent="Node"]
+position = Vector2(736, -283)
+scale = Vector2(3.02784, 3.02784)
+texture = ExtResource("2_50pqb")
+region_enabled = true
+region_rect = Rect2(-155.451, -71.188, 1617.74, 558.233)
+
+[node name="SkyCloud3" type="Sprite2D" parent="Node"]
+position = Vector2(1128, 91)
+scale = Vector2(3.02784, 3.02784)
+texture = ExtResource("2_50pqb")
+region_enabled = true
+
+[node name="Mountain2" type="Sprite2D" parent="Node"]
+position = Vector2(887, 224)
+scale = Vector2(1.35827, 1.35827)
+texture = ExtResource("5_lp0md")
+
+[node name="Mountain4" type="Sprite2D" parent="Node"]
+position = Vector2(-631, 303)
+scale = Vector2(1.35827, 1.35827)
+texture = ExtResource("5_lp0md")
+
+[node name="Mountain" type="Sprite2D" parent="Node"]
+position = Vector2(190, 421)
+scale = Vector2(1.22047, 1.22047)
+texture = ExtResource("5_lp0md")
+
+[node name="Mountain3" type="Sprite2D" parent="Node"]
+position = Vector2(1538, 387)
+scale = Vector2(1.22047, 1.22047)
+texture = ExtResource("5_lp0md")
+
+[node name="Pine3" type="Sprite2D" parent="Node"]
+position = Vector2(1664, 515)
+scale = Vector2(1, 1)
+texture = ExtResource("3_vsigm")
+
+[node name="Pine4" type="Sprite2D" parent="Node"]
+position = Vector2(320, 549)
+texture = ExtResource("4_318mb")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_v6fau")
