@@ -149,6 +149,7 @@ position = Vector2(312, -820)
 scale = Vector2(3.50345, 2.04311)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 script = ExtResource("1_gco5g")
 target = NodePath("../Player")
 
