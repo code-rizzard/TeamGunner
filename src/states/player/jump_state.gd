@@ -8,7 +8,7 @@ func  _on_enter(prev_state : State) -> void:
 	parent.velocity.y = -parent.jump_velocity
 	if prev_state == crouch_state:
 		was_crouched = true
-		parent.velocity.y = -sqrt(2*parent.gravity*(parent.jump_height + 0.65) * 32)
+		parent.velocity.y = -sqrt(2*parent.gravity*(parent.jump_height + 0.85) * 32)
 
 	if not Input.is_action_pressed("jump"):
 		parent.velocity.y = -100
@@ -32,7 +32,7 @@ func _on_physics_process(delta) -> State:
 	if r != null:
 		return r
 	if was_crouched:
-		parent.velocity.x *= 1.15
+		parent.velocity.x *= 1.05
 	return null
 
 
