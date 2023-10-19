@@ -281,19 +281,21 @@ offset_right = 23.0
 offset_bottom = -14.0
 text = "sadf"
 
-[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state", "shoot_state", "death_state")]
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state", "shoot_state", "death_state", "walk_state")]
 script = ExtResource("8_m5h34")
 idle_state = NodePath("../Idle")
 fall_state = NodePath(".")
 shoot_state = NodePath("../ShootState")
 death_state = NodePath("../DeathState")
+walk_state = NodePath("../WanderState")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state", "fall_state", "shoot_state", "death_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("wander_state", "fall_state", "shoot_state", "death_state", "walk_state")]
 script = ExtResource("8_6p1n5")
 wander_state = NodePath("../WanderState")
 fall_state = NodePath("../FallState")
 shoot_state = NodePath("../ShootState")
 death_state = NodePath("../DeathState")
+walk_state = NodePath("../WanderState")
 
 [node name="WanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "left_cliff_detector", "right_cliff_detector", "shoot_state", "death_state")]
 script = ExtResource("10_8amvk")
@@ -304,10 +306,11 @@ right_cliff_detector = NodePath("../../Right")
 shoot_state = NodePath("../ShootState")
 death_state = NodePath("../DeathState")
 
-[node name="ShootState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "death_state")]
+[node name="ShootState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "death_state", "walk_state")]
 script = ExtResource("13_cd67h")
 idle_state = NodePath("../Idle")
 death_state = NodePath("../DeathState")
+walk_state = NodePath("../WanderState")
 
 [node name="DeathState" type="Node" parent="StateMachine"]
 script = ExtResource("16_sl5hi")
