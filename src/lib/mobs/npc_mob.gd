@@ -20,7 +20,7 @@ func try_detect_target():
 		player_detector.target_position.x *= -1
 	if player_detector.is_colliding() and target == null:
 		var c := player_detector.get_collider()
-		if c.is_dead:
+		if c == null or c.is_dead:
 			return
 		set_target(c)
 			
