@@ -251,6 +251,7 @@ position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_3v5r8")
 
 [node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(18, 2)
 script = ExtResource("8_uddnq")
 bullet_scene = ExtResource("9_a0sm7")
 
