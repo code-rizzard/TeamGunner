@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://src/lib/state.gd" id="16_sl5hi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tadrg"]
-size = Vector2(18, 28)
+size = Vector2(18, 27)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_darh0"]
 atlas = ExtResource("2_i8tyt")
@@ -230,7 +230,7 @@ anim_player = NodePath("AnimatedSprite2D")
 muzzle = NodePath("Muzzle")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_tadrg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
