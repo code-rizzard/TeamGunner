@@ -6,6 +6,7 @@ var direction := Vector2.RIGHT
 var source : Node2D
 
 var velocity := Vector2.ZERO
+var is_dead := false
 
 func setup(dir : Vector2, pos: Vector2, attack_mask : int, _source : Node2D):
 	global_position = pos
@@ -29,12 +30,14 @@ func _physics_process(delta: float) -> void:
 	
 
 func _on_area_entered(area:Area2D) -> void:
-	if area is Hurtbox:
+	if area is Hurtbox and not is_dead:
 		var a := area as Hurtbox
 
 		a.hit(DamageInfo.new(10, source if is_instance_valid(source) else null))
+		is_dead = true
 		queue_free()
 
 
 func _on_body_entered(_body:Node2D) -> void:
+	is_dead = true
 	queue_free()
