@@ -18,7 +18,7 @@ func _on_process(_delta) -> State:
 
 func _on_physics_process(_delta) -> State :
 	var r := super(_delta)
-	target.velocity.x = lerpf(target.velocity.x, target.input_direction * target.movement_speed, 0.7)
+	parent.velocity.x = lerpf(parent.velocity.x, parent.input_direction * parent.movement_speed, 0.7)
 	if not parent.is_on_floor() and parent.velocity.y > 0:
 		return fall_state
 	return r

@@ -5,7 +5,7 @@ extends State
 
 func _on_ready():
 	super()
-	parent = target
+	parent = self.__target
 
 	parent.hurtbox.on_hit.connect(on_hurtbox_hit)
 	
@@ -13,7 +13,7 @@ func on_hurtbox_hit(_damage : DamageInfo) -> void:
 	if not is_active():
 		return
 	if parent.target == null:
-		parent.target = _damage.damager
+		parent.set_target(_damage.damager)
 
 
 func _on_physics_process(delta: float) -> State:

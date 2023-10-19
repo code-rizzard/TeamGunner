@@ -1,7 +1,7 @@
 class_name State
 extends Node
 
-var target : Node
+var __target : Node2D
 var _state_machine : StateMachine
 
 
@@ -12,7 +12,7 @@ func _on_ready() -> void:
 
 ## This is a private method initializing default behavior of a State
 func _init_state(_t: Node, machine : StateMachine) -> void:
-	target = _t
+	__target = _t
 	_state_machine = machine
 	set_process(false)
 	set_physics_process(false)
