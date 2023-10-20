@@ -5,7 +5,6 @@ extends NpcMob
 @onready var space := get_world_2d().direct_space_state
 
 
-
 	
 
 func shoot():

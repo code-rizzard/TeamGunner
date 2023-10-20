@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/wander_state.gd" id="10_8amvk"]
 [ext_resource type="Script" path="res://src/lib/state_viewer.gd" id="11_nb540"]
 [ext_resource type="Script" path="res://src/mobs/enemies/red/states/shoot_state.gd" id="13_cd67h"]
-[ext_resource type="Script" path="res://src/lib/state.gd" id="16_sl5hi"]
+[ext_resource type="Script" path="res://src/mobs/enemies/red/states/death_state.gd" id="16_4eqwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tadrg"]
 size = Vector2(18, 27)
@@ -314,7 +314,7 @@ death_state = NodePath("../DeathState")
 walk_state = NodePath("../WanderState")
 
 [node name="DeathState" type="Node" parent="StateMachine"]
-script = ExtResource("16_sl5hi")
+script = ExtResource("16_4eqwl")
 
 [node name="PlayerDetector" type="RayCast2D" parent="."]
 target_position = Vector2(160, 0)
