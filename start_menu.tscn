@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://masll380ug6i"]
+
+[ext_resource type="Texture2D" uid="uid://d38tnnl6c6cw" path="res://assets/background/sky_cloud.png" id="1_68p31"]
+[ext_resource type="Script" path="res://start_menu.gd" id="1_w4x7c"]
+[ext_resource type="Texture2D" uid="uid://cplggp6vqe2h4" path="res://assets/start_btn.png" id="2_fy334"]
+[ext_resource type="Texture2D" uid="uid://di1sdxr7sqlja" path="res://assets/exit_btn.png" id="3_ml1ii"]
+
+[node name="Start Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4x7c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_68p31")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -96.0
+offset_right = 160.0
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Start" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_fy334")
+stretch_mode = 3
+
+[node name="exit" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_ml1ii")
+stretch_mode = 3
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]
